@@ -1,0 +1,23 @@
+services:
+  pgadmin4:
+    image: dpage/pgadmin4:latest
+    ports:
+      - 18080:80
+    volumes:
+      - pgadmin4:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root@example.com
+      PGADMIN_DEFAULT_PASSWORD: root
+      PGADMIN_CONFIG_SERVER_MODE: False
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: False
+    hostname: pgadmin4
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: '3'
+
+volumes:
+  pgadmin4:
+    driver: local
